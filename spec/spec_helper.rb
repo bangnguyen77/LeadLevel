@@ -11,6 +11,8 @@ Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 require("./app")
 
+require("bcrypt")
+
 RSpec.configure do |config|
   config.after(:each) do
     Contact.all().each() do |contact|

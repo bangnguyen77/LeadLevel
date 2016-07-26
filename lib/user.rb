@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
   validates(:user_name, {:presence => true})
   validates(:password, {:presence => true})
 
+  validates_uniqueness_of :user_name
+
+  # has_secure_password
+
+  
 
   before_save(:capitalize_name)
 

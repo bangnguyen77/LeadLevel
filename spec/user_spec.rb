@@ -1,5 +1,6 @@
 require('spec_helper')
 
+
 describe(User) do
 
   describe('#contact') do
@@ -42,15 +43,30 @@ describe(User) do
   # end
 
   it("validates the presence of the password") do
-    test_password = User.new({:user_name => "bang"})
+    test_password = User.new({:user_name => "bang", :password => nil})
     expect(test_password.save()).to(eq(false))
   end
 
   it("validates the presence of a username") do
-    test_user = User.new({:user_name => nil})
+    test_user = User.new({:user_name => nil, :password => "matt"})
     expect(test_user.save()).to(eq(false))
   end
 
+  it("saves if you have an user name and password") do
+    test_user = User.new({:user_name => "bole", :password => "password"})
+    expect(test_user.save()).to(eq(true))
+  end
+
+  it("will not save if you enter in an user name thats already taken") do
+    test_user = User.create({:user_name => "bole", :password => "password"})
+    test_user1 = User.new({:user_name => "bole", :password => "123456"})
+    expect(test_user1.save()).to(eq(false))
+  end
+
+  # it("validates the passwords are matched") do
+  #   test_password = User.new({:password => "string", :password_confirmation => "string"})
+  #   expect(confirm_password.save()).to(eq(test_password))
+  # end
 
   # it("validates the presence of the address_line1") do
   #   test_address_line1 = User.new({:address_line1 => ""})
