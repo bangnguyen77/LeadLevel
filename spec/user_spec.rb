@@ -1,6 +1,7 @@
 require('spec_helper')
 
 describe(User) do
+
   describe('#contact') do
     it("belongs to a contact") do
       test_contact = Contact.create({:email_address => "Molly@gmail.com"})
@@ -28,4 +29,49 @@ describe(User) do
   end
 
 
+
+  it("validates the presence of the first name") do
+    test_first_name = User.new({:first_name => ""})
+    expect(test_first_name.save()).to(eq(false))
+  end
+
+  it("validates the presence of the last name") do
+    test_last_name = User.new({:last_name => ""})
+    expect(test_last_name.save()).to(eq(false))
+  end
+
+  it("validates the presence of the password") do
+    test_password = User.new({:password => ""})
+    expect(test_password.save()).to(eq(false))
+  end
+
+  it("validates the presence of the password confirmation") do
+    test_password_confirmation = User.new({:password_confirmation => ""})
+    expect(test_password_confirmation.save()).to(eq(false))
+  end
+
+  it("validates the presence of the address_line1") do
+    test_address_line1 = User.new({:address_line1 => ""})
+    expect(test_address_line1.save()).to(eq(false))
+  end
+
+  it("validates the presence of the address_line2") do
+    test_address_line1 = User.new({:address_line2 => ""})
+    expect(test_address_line2.save()).to(eq(false))
+  end
+
+  it("validates the presence of the city") do
+    test_city = User.new({:city => ""})
+    expect(test_city.save()).to(eq(false))
+  end
+
+  it("validates the presence of the zipcode") do
+    test_zipcode = User.new({:zipcode => ""})
+    expect(test_zipcode.save()).to(eq(false))
+  end
+
+  it("validates the presence of the state") do
+    test_state = User.new({:state => ""})
+    expect(test_state.save()).to(eq(false))
+  end
 end
